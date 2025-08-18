@@ -1,0 +1,99 @@
+#include<iostream>
+using namespace std;
+
+class staff
+{
+	protected:  
+	string name,departn;
+	int staffid;
+	public:
+	void accept();
+	void display();
+};
+class teacher: public staff
+{
+	string role,sec;
+	public:
+	void accept2();
+	void display2();
+};
+class support:public staff
+{
+	string work;
+	int flr;
+	public: 
+	void accept3();
+	void display3();
+};
+void staff::accept()
+{
+	cout<<"\n Enter name of the staff member:";
+	cin>>name;
+	cout<<"Enter department of working:";
+	cin>>departn;
+	cout<<"Enter your staff ID:";
+	cin>>staffid;
+}
+void staff::display()
+{
+	cout<<"\n----STAFF INFORMATION----\n";	
+		cout<<"name:"<<name;
+	cout<<"\nstaff id:"<<staffid;
+	cout<<"\ndepartment is:"<<departn;
+}
+void teacher::accept2()
+{
+	accept();
+	cout<<"Enter role of the teacher:";
+	cin>>role;
+	cout<<"Enter section of working:";
+	cin>>sec;
+}
+void teacher::display2()
+{
+	display();
+		cout<<"role:"<<role;
+	cout<<"\nsection :"<<sec;
+}
+void support::accept3()
+{
+	accept();
+	cout<<" Enter work type:";
+	cin>>work;
+	cout<<"Enter floor associated to the staff:";
+	cin>>flr;
+}
+void support::display3()
+{
+	display();
+		cout<<"work:"<<work;
+	cout<<"floor:"<<flr;
+}
+
+int main()
+{
+    int i,j,n,s;
+    cout<<"Enter number of teachers:";
+    cin>>n;
+    teacher u[n];
+    for(i=0;i<n;i++)
+    {
+        u[i].accept2();
+    }
+    for(i=0;i<n;i++)
+    {
+        u[i].display2();
+    }
+    cout<<"\n Enter number of non-teaching staff:";
+    cin>>s;
+    support y[s];
+    for(j=0;j<s;j++)
+    {
+        y[j].accept3();
+    }
+    for(j=0;j<s;j++)
+    {
+        y[j].display3();
+    }
+		return 0;
+}
