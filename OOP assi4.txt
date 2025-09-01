@@ -1,0 +1,70 @@
+#include<iostream>
+using namespace std;
+
+class complex
+{
+    int x, y;
+
+public:
+    
+    complex operator+(complex);
+    friend complex operator*(complex, complex);
+
+  // function prototype 
+    friend istream& operator>>(istream&, complex&);
+    friend ostream& operator<<(ostream&, const complex&);
+};
+
+// function definition 
+complex complex::operator+(complex c)
+{
+    complex temp;   
+    temp.x = x + c.x;
+    temp.y = y + c.y;
+    return temp;
+}
+
+
+complex operator*(complex a, complex b)
+{
+    complex temp;   
+    temp.x = a.x * b.x - a.y * b.y;
+    temp.y = a.x * b.y + a.y * b.x;
+    return temp;
+}
+
+
+istream& operator>>(istream& in, complex& c)
+{
+    cout << "Enter real part: ";
+    in >> c.x;       // in for overloading 
+    cout << "Enter imaginary part: ";
+    in >> c.y;       // in for overloading
+    return in;
+}
+
+
+ostream& operator<<(ostream& out, const complex& c)
+{
+    out << c.x << " + i" << c.y;    // out for overloading
+    return out;
+}
+
+int main()
+{
+    complex c1, c2, c3, c4;
+    // function call
+    cin >> c1;
+    cin >> c2;
+
+    cout << "First: " << c1 << endl;
+    cout << "Second: " << c2 << endl;
+
+    c3 = c1 + c2;
+    cout << "Addition: " << c3 << endl;
+
+    c4 = c1 * c2;
+    cout << "Multiplication: " << c4 << endl;
+
+    return 0;
+}
