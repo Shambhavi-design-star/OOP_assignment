@@ -1,1 +1,109 @@
+#include<iostream>
+using namespace std;
+class employee
+{
+private:
+    static int count;
+    string name;
+    int id;
+    string depart;
+    string joining_date;
+    string address;
+    long long phone_no;
+public:
+    inline void intro(void)
+    {
+        cout << "----EMPLOYEE INFORMATION SYSTEM----\n";
+    }
+    void display();
+    void accept();
+    static void scount()
+    {
+        count++;
+        cout << "\nEMPLOYEE NUMBER: " << count << endl;
+    }
+    employee()
+    {
+        cout << "This is default constructor\n";
+        name = "";
+        id = 0;
+        depart = "";
+        joining_date = "";
+        address = "";
+        phone_no = 0;
+    }
+    employee(string n, int i, string d, string jd, string ad, int p)
+    {
+        cout << "This is parameterized constructor\n";
+        name = n;
+        id = i;
+        depart = d;
+        joining_date = jd;
+        address = ad;
+        phone_no = p;
+    }
+    ~employee()
+    {
+		cout<<"destructor used\n";
+		count--;
+	}
+    employee(const employee &e3)
+    {
+        cout << "This is copy constructor\n";
+        name = e3.name;
+        id = e3.id;
+        depart = e3.depart;
+        joining_date = e3.joining_date;
+        address = e3.address;
+        phone_no = e3.phone_no;
+    }
+ };
+int employee::count = 0;
+void employee::accept()
+{
+    cout << "\nEnter name of the employee: ";
+    cin >> name;
+    cout << "Enter employee ID: ";
+    cin >> id;
+    cout << "Enter date of joining: ";
+    cin >> joining_date;
+    cout << "Enter the department of the employee: ";
+    cin >> depart;
+    cout << "Enter employee's address: ";
+    cin >> address;
+    cout << "Enter phone number: ";
+    cin >> phone_no;
+}
+void employee::display()
+{
+    cout << "\nName of the employee is: " << name;
+    cout << "\nEmployee ID is: " << id;
+    cout << "\nEmployee's date of joining is: " << joining_date;
+    cout << "\nDepartment of the employee is: " << depart;
+    cout << "\nEmployee's address is: " << address;
+    cout << "\nPhone number is: " << phone_no << endl;
+}
+
+
+int main()
+{
+    employee e1;
+    e1.intro();
+    e1.accept();
+    e1.display();
+    employee::scount();
+    employee e2("JUI", 1234, "COMP", "28/12", "DS", 8785);
+    e2.display();
+    employee::scount();
+
+    employee e4 = e2;
+    e4.display();
+    employee::scount();
+      employee *ptr=new employee("hii",345,"aids","767","654",7867);
+      ptr->display();
+      delete ptr;
+
+    return 0;
+}
+
 
